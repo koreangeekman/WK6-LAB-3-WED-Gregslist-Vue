@@ -22,6 +22,10 @@ class CarsService {
   clearData() {
     AppState.activeCar = null
   }
+  clearAllData() {
+    this.clearData()
+    AppState.cars = null
+  }
 
   // 🔽 AUTHENTICATION REQUIRED 🔽
 

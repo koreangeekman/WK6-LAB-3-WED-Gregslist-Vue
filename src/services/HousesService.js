@@ -9,13 +9,21 @@ class HousesService {
     const res = await api.get('api/houses');
     const houses = res.data.map(house => new House(house))
     AppState.houses = houses
-    logger.log('[HOUSES SERVICE] getHouses() =', houses)
+    // logger.log('[HOUSES SERVICE] getHouses(): ', houses)
     // return houses
   }
 
   async getHouseById(houseId) {
     const res = await api.get(`api/houses/${houseId}`);
     return new House(res.data)
+  }
+
+  clearData() {
+    AppState.activeHouse = null
+  }
+  clearAllData() {
+    this.clearData()
+    AppState.houses = null
   }
 
   // 🔽 AUTHENTICATION REQUIRED 🔽

@@ -18,7 +18,7 @@
 
 <script>
 import { AppState } from '../AppState';
-import { computed, onMounted } from 'vue';
+import { computed, onMounted, onUnmounted } from 'vue';
 import { housesService } from "../services/HousesService";
 import { logger } from "../utils/Logger";
 import Pop from "../utils/Pop";
@@ -38,6 +38,9 @@ export default {
 
     onMounted(() => {
       _getHouses()
+    })
+    onUnmounted(() => {
+      housesService.clearAllData()
     })
 
     return {

@@ -28,18 +28,21 @@
         </li> -->
       </ul>
       <!-- LOGIN COMPONENT HERE -->
+      <AddItemForm />
+      &nbsp;
       <Login />
     </div>
   </nav>
 </template>
 
 <script>
+import AddItemForm from "./AddItemForm.vue";
 import Login from './Login.vue';
 export default {
   setup() {
     return {}
   },
-  components: { Login }
+  components: { Login, AddItemForm }
 }
 </script>
 
