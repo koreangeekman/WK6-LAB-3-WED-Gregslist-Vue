@@ -17,16 +17,16 @@ const routes = [
     component: loadPage('AccountPage'),
     beforeEnter: authGuard
   },
-  // {
-  //   path: '/cars',
-  //   name: 'Cars',
-  //   component: loadPage('CarsPage')
-  // },
-  // {
-  //   path: '/cars/:carId',
-  //   name: 'CarDetails',
-  //   component: loadPage('CarDetailsPage')
-  // },
+  {
+    path: '/cars',
+    name: 'Cars',
+    component: loadPage('CarsPage')
+  },
+  {
+    path: '/cars/:carId',
+    name: 'CarDetails',
+    component: loadPage('CarDetailsPage')
+  },
   {
     path: '/houses',
     name: 'Houses',

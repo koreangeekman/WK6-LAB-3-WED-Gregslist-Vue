@@ -9,12 +9,18 @@ class CarsService {
     const res = await api.get('api/cars');
     const cars = res.data.map(car => new Car(car))
     AppState.cars = cars
-    return cars
+    // logger.log('[CARS SERVICE] getCars(): ', cars)
   }
 
   async getCarById(carId) {
     const res = await api.get(`api/cars/${carId}`);
+    AppState.activeCar = new Car(res.data)
+    // logger.log('[CARS SERVICE] getCarById(): ', AppState.activeCar)
     return new Car(res.data)
+  }
+
+  clearData() {
+    AppState.activeCar = null
   }
 
   // 🔽 AUTHENTICATION REQUIRED 🔽

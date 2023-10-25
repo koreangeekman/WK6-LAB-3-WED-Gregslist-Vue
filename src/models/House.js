@@ -66,6 +66,9 @@ export class House {
     this.bedrooms = data.bedrooms
     this.bathrooms = data.bathrooms
     this.description = data.description
+    this.creatorId = data.creatorId
     this.creator = data.creator
+    this.createdAt = new Date(data.createdAt)
+    this.updatedAt = new Date(data.updatedAt)
   }
 }
