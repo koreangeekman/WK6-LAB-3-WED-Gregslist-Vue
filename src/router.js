@@ -22,11 +22,11 @@ const routes = [
     component: loadPage('AccountPage'),
     beforeEnter: authGuard
   },
-  // {
-  //   path: '/cars',
-  //   name: 'Cars',
-  //   component: loadPage('CarsPage')
-  // },
+  {
+    path: '/cars',
+    name: 'Cars',
+    component: loadPage('CarsPage')
+  },
   // {
   //   path: '/cars/:carId',
   //   name: 'CarDetails',
@@ -42,11 +42,11 @@ const routes = [
   //   name: 'HouseDetails',
   //   component: loadPage('HouseDetailsPage')
   // },
-  // {
-  //   path: '/jobs',
-  //   name: 'Jobs',
-  //   component: loadPage('JobsPage')
-  // },
+  {
+    path: '/jobs',
+    name: 'Jobs',
+    component: loadPage('JobsPage')
+  },
   // {
   //   path: '/jobs/:jobId',
   //   name: 'JobDetails',
