@@ -21,7 +21,37 @@ const routes = [
     name: 'Account',
     component: loadPage('AccountPage'),
     beforeEnter: authGuard
-  }
+  },
+  // {
+  //   path: '/cars',
+  //   name: 'Cars',
+  //   component: loadPage('CarsPage')
+  // },
+  // {
+  //   path: '/cars/:carId',
+  //   name: 'CarDetails',
+  //   component: loadPage('CarDetailsPage')
+  // },
+  {
+    path: '/houses',
+    name: 'Houses',
+    component: loadPage('HousesPage')
+  },
+  // {
+  //   path: '/houses/:houseId',
+  //   name: 'HouseDetails',
+  //   component: loadPage('HouseDetailsPage')
+  // },
+  // {
+  //   path: '/jobs',
+  //   name: 'Jobs',
+  //   component: loadPage('JobsPage')
+  // },
+  // {
+  //   path: '/jobs/:jobId',
+  //   name: 'JobDetails',
+  //   component: loadPage('JobDetailsPage')
+  // }
 ]
 
 export const router = createRouter({
