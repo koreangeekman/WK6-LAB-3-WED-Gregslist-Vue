@@ -1,10 +1,10 @@
 <template>
-  <div class="modal fade" id="carFormModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="carFormModal" tabindex="-1" aria-labelledby="carFormLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h1 v-if="!editable.id" class="modal-title fs-5" id="exampleModalLabel">Create Car</h1>
-          <h1 v-else class="modal-title fs-5" id="exampleModalLabel">Edit Car</h1>
+          <h1 v-if="!editable.id" class="modal-title fs-5" id="carFormLabel">Create Car Entry</h1>
+          <h1 v-else class="modal-title fs-5" id="carFormLabel">Edit Car Entry</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">

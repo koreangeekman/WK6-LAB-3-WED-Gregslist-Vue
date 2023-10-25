@@ -1,18 +1,12 @@
 <template>
   <div class="container-fluid">
     <section class="row">
-      <div class="col-12">
-        <!-- <PageNav /> -->
-      </div>
-      <div class="col-12">
-        <section class="row">
-          <div class="col-12 col-md-4 p-3" v-for="house in houses" :key="house.id">
-            <HouseEntry :house="house" />
-          </div>
-        </section>
+      <div class="col-12 col-md-4 p-3" v-for="house in houses" :key="house.id">
+        <HouseEntry :house="house" />
       </div>
     </section>
   </div>
+  <HouseForm />
 </template>
 
 
@@ -23,6 +17,7 @@ import { housesService } from "../services/HousesService";
 import { logger } from "../utils/Logger";
 import Pop from "../utils/Pop";
 import HouseEntry from "../components/Houses/HouseEntry.vue";
+import HouseForm from "../components/Houses/HouseForm.vue";
 
 export default {
   setup() {
@@ -48,7 +43,7 @@ export default {
     };
 
   },
-  components: { HouseEntry }
+  components: { HouseEntry, HouseForm }
 };
 </script>
 
