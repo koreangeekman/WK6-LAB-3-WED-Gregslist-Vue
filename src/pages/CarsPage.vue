@@ -1,7 +1,7 @@
 <template>
   <div class="container-fluid">
     <section class="row">
-      <div v-for="car in cars" :key="car.id" class="col-md-6 p-4">
+      <div v-for="car in cars" :key="car.id" class="col-12 col-md-6 p-4">
         <CarEntry :carProp="car" />
       </div>
     </section>
@@ -13,9 +13,10 @@
 
 <script>
 import { computed, onMounted, onUnmounted } from 'vue';
+import { logger } from "../utils/Logger";
 import Pop from '../utils/Pop.js';
-import { carsService } from '../services/CarsService.js'
 import { AppState } from '../AppState.js'
+import { carsService } from '../services/CarsService.js'
 import CarForm from '../components/Cars/CarForm.vue';
 import CarEntry from '../components/Cars/CarEntry.vue';
 
@@ -27,23 +28,27 @@ export default {
         await carsService.getCars();
       }
       catch (error) {
+        logger.error(error);
         Pop.error(error);
       }
     }
+
     onMounted(() => {
-      carsService.clearData()
+      carsService.clearData();
       getCars();
     });
+
     onUnmounted(() => {
-      carsService.clearAllData()
+      carsService.clearAllData();
     });
+
     return {
       cars: computed(() => AppState.cars),
-      account: computed(() => AppState.account)
+      // account: computed(() => AppState.account)
     };
   },
   components: { CarForm, CarEntry }
-}
+};
 </script>
 
 

@@ -40,6 +40,7 @@ import Pop from '../utils/Pop.js';
 // import { logger } from '../utils/Logger.js';
 import CarForm from '../components/Cars/CarForm.vue';
 import { carsService } from '../services/CarsService.js';
+import { logger } from "../utils/Logger";
 
 export default {
   setup() {
@@ -47,20 +48,24 @@ export default {
     const route = useRoute();
     // NOTE router allows us to change what the current route looks like
     const router = useRouter();
+
     async function getCarById() {
       try {
         const carId = route.params.carId;
         await carsService.getCarById(carId);
       }
       catch (error) {
+        logger.error(error);
         Pop.error(error);
       }
     }
+
     onMounted(() => {
       // logger.log('CAR ID FROM ROUTE', route.params.carId);
       carsService.clearData();
       getCarById();
     });
+
     return {
       car: computed(() => AppState.activeCar),
       account: computed(() => AppState.account),
@@ -69,9 +74,8 @@ export default {
         try {
           // const carId = AppState.activeCar.id
           const wantsToDelete = await Pop.confirm('Are you sure you want to do that?');
-          if (!wantsToDelete) {
-            return;
-          }
+          if (!wantsToDelete) { return; }
+
           const carId = route.params.carId;
           await carsService.removeCar(carId);
           router.push({ name: 'Cars' });

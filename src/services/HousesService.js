@@ -15,6 +15,8 @@ class HousesService {
 
   async getHouseById(houseId) {
     const res = await api.get(`api/houses/${houseId}`);
+    AppState.activeHouse = new House(res.data)
+    logger.log('[HOUSES SERVICE] getHouseById(): ', AppState.activeHouse)
     return new House(res.data)
   }
 
@@ -34,18 +36,23 @@ class HousesService {
     AppState.houses.unshift(newHouse);
     return newHouse
   }
-
-  async removeHouse(houseId, userId) {
-    const toBeDeletedIndex = AppState.houses.findIndex(h => h.id = houseId)
-    if (toBeDeletedIndex == -1) { throw new logger.error('Unable to locate house with ID: ', houseId); }
-    const toBeDeleted = await api.get(`api/houses/${houseId}`)
-    if (toBeDeleted.data.creatorId != userId) { throw new logger.error('Not your entry to remove'); }
-
+  async removeHouse(houseId) {
     const res = await api.delete(`api/houses/${houseId}`);
-
-    AppState.houses.splice(toBeDeletedIndex, 1);
-    return res.data
+    this.clearData()
+    logger.log('House removed.', res.data)
   }
+
+  // async removeHouse(houseId, userId) {
+  //   const toBeDeletedIndex = AppState.houses.findIndex(h => h.id = houseId)
+  //   if (toBeDeletedIndex == -1) { throw new logger.error('Unable to locate house with ID: ', houseId); }
+  //   const toBeDeleted = await api.get(`api/houses/${houseId}`)
+  //   if (toBeDeleted.data.creatorId != userId) { throw new logger.error('Not your entry to remove'); }
+
+  //   const res = await api.delete(`api/houses/${houseId}`);
+
+  //   AppState.houses.splice(toBeDeletedIndex, 1);
+  //   return res.data
+  // }
 
   async updateHouse(houseId, newBody, userId) {
     const toBeUpdatedIndex = AppState.houses.findIndex(h => h.id = houseId)

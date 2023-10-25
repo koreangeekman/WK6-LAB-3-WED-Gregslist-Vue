@@ -26,11 +26,11 @@ const routes = [
     name: 'Houses',
     component: loadPage('HousesPage')
   },
-  // {
-  //   path: '/houses/:houseId',
-  //   name: 'HouseDetails',
-  //   component: loadPage('HouseDetailsPage')
-  // },
+  {
+    path: '/houses/:houseId',
+    name: 'HouseDetails',
+    component: loadPage('HouseDetailsPage')
+  },
   // {
   //   path: '/jobs',
   //   name: 'Jobs',
