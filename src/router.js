@@ -12,12 +12,6 @@ const routes = [
     component: loadPage('HomePage')
   },
   {
-    path: '/account',
-    name: 'Account',
-    component: loadPage('AccountPage'),
-    beforeEnter: authGuard
-  },
-  {
     path: '/cars',
     name: 'Cars',
     component: loadPage('CarsPage')
@@ -46,7 +40,13 @@ const routes = [
   //   path: '/jobs/:jobId',
   //   name: 'JobDetails',
   //   component: loadPage('JobDetailsPage')
-  // }
+  // },
+  {
+    path: '/account',
+    name: 'Account',
+    component: loadPage('AccountPage'),
+    beforeEnter: authGuard
+  },
 ]
 
 export const router = createRouter({

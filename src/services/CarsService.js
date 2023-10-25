@@ -41,28 +41,37 @@ class CarsService {
     const res = await api.delete(`api/cars/${carId}`);
 
     AppState.cars.splice(toBeDeletedIndex, 1);
+
+    this.clearData()
     return res.data
   }
 
-  async updateCar(carId, newBody, userId) {
-    const toBeUpdatedIndex = AppState.cars.findIndex(h => h.id = carId)
-    if (toBeUpdatedIndex == -1) { throw new logger.error('Unable to locate car with ID: ', carId); }
-    const toBeUpdated = await api.get(`api/cars/${carId}`)
-    if (toBeUpdated.data.creatorId != userId) { throw new logger.error('Not your entry to remove'); }
-
-    toBeUpdated.year = newBody.year || toBeUpdated.year
-    toBeUpdated.price = newBody.price || toBeUpdated.price
-    toBeUpdated.imgUrl = newBody.imgUrl || toBeUpdated.imgUrl
-    toBeUpdated.levels = newBody.levels || toBeUpdated.levels
-    toBeUpdated.bedrooms = newBody.bedrooms || toBeUpdated.bedrooms
-    toBeUpdated.bathrooms = newBody.bathrooms || toBeUpdated.bathrooms
-    toBeUpdated.description = newBody.description || toBeUpdated.description
-
-    const res = await api.put(`api/cars/${carId}`, toBeUpdated);
-
-    AppState.cars.splice(toBeUpdatedIndex, 1, new Car(res.data));
-    return res.data
+  async updateCar(carData) {
+    const res = await api.put(`api/cars/${carData.id}`, carData)
+    // logger.log('EDITED CAR', res.data)
+    const newCar = new Car(res.data)
+    AppState.activeCar = newCar
   }
+
+  // async updateCar(carId, newBody, userId) {
+  //   const toBeUpdatedIndex = AppState.cars.findIndex(h => h.id = carId)
+  //   if (toBeUpdatedIndex == -1) { throw new logger.error('Unable to locate car with ID: ', carId); }
+  //   const toBeUpdated = await api.get(`api/cars/${carId}`)
+  //   if (toBeUpdated.data.creatorId != userId) { throw new logger.error('Not your entry to remove'); }
+
+  //   toBeUpdated.year = newBody.year || toBeUpdated.year
+  //   toBeUpdated.price = newBody.price || toBeUpdated.price
+  //   toBeUpdated.imgUrl = newBody.imgUrl || toBeUpdated.imgUrl
+  //   toBeUpdated.levels = newBody.levels || toBeUpdated.levels
+  //   toBeUpdated.bedrooms = newBody.bedrooms || toBeUpdated.bedrooms
+  //   toBeUpdated.bathrooms = newBody.bathrooms || toBeUpdated.bathrooms
+  //   toBeUpdated.description = newBody.description || toBeUpdated.description
+
+  //   const res = await api.put(`api/cars/${carId}`, toBeUpdated);
+
+  //   AppState.cars.splice(toBeUpdatedIndex, 1, new Car(res.data));
+  //   return res.data
+  // }
 
 }
 

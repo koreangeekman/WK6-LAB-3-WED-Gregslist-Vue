@@ -8,13 +8,19 @@ export const AppState = reactive({
 
   /** @type {import('./models/Car.js').Car} */
   cars: null,
+
+  /** @type {import('./models/Car.js').Car | null} */
   activeCar: null,
 
   /** @type {import('./models/House.js').House} */
   houses: null,
 
+  /** @type {import('./models/House.js').House | null} */
+  activeHouse: null,
+
   /** @type {import('./models/Job.js').Job} */
   jobs: null,
 
-  activeEntry: null
+  /** @type {import('./models/Job.js').Job | null} */
+  activeJob: null
 })
