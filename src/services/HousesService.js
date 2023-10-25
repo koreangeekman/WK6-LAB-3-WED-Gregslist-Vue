@@ -9,7 +9,8 @@ class HousesService {
     const res = await api.get('api/houses');
     const houses = res.data.map(house => new House(house))
     AppState.houses = houses
-    return houses
+    logger.log('[HOUSES SERVICE] getHouses() =', houses)
+    // return houses
   }
 
   async getHouseById(houseId) {

@@ -6,7 +6,9 @@
       </div>
       <div class="col-12">
         <section class="row">
-          <CardLister />
+          <div class="col-12 col-md-4 p-3" v-for="house in houses" :key="house.id">
+            <HouseEntry :house="house" />
+          </div>
         </section>
       </div>
     </section>
@@ -16,17 +18,34 @@
 
 <script>
 import { AppState } from '../AppState';
-import { computed, reactive, onMounted, provide } from 'vue';
-import CardLister from "../components/CardLister.vue";
-provide('carsData', AppState.cars)
-provide('housesData', AppState.houses)
-provide('jobsData', AppState.jobs)
+import { computed, onMounted } from 'vue';
+import { housesService } from "../services/HousesService";
+import { logger } from "../utils/Logger";
+import Pop from "../utils/Pop";
+import HouseEntry from "../components/Houses/HouseEntry.vue";
 
 export default {
   setup() {
-    return {};
+
+    async function _getHouses() {
+      try {
+        await housesService.getHouses()
+      } catch (error) {
+        logger.error(error)
+        Pop.error(error)
+      }
+    }
+
+    onMounted(() => {
+      _getHouses()
+    })
+
+    return {
+      houses: computed(() => AppState.houses)
+    };
+
   },
-  components: { CardLister }
+  components: { HouseEntry }
 };
 </script>
 
